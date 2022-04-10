@@ -20,6 +20,4 @@ export class ProductsResolver {
     @Args('data') data: CreateProductInputs) {
     return this.productService.createProduct(data);
   }
-
-  
 }

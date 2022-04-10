@@ -9,6 +9,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ProductService } from 'src/services/product.service';
 import { PurchasesResolver } from './resolvers/purchases.resolver';
 import { PurchaseService } from 'src/services/purchase.service';
+import { CustomerService } from 'src/services/customer.service';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { PurchaseService } from 'src/services/purchase.service';
       autoSchemaFile: path.resolve(process.cwd(), 'src/schema.gql'),
     }),
   ],
-  providers: [ProductsResolver, ProductService, PurchasesResolver, PurchaseService],
+  providers: [ProductsResolver, ProductService, PurchasesResolver, PurchaseService, CustomerService],
 })
 export class HttpModule { }
