@@ -13,9 +13,11 @@ datasource db {
 model Customer {
   id String @id @default(uuid())
 
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @default(now()) @updatedAt
-  purchases Purchase[]
+  authUserId String?    @unique
+  purchases  Purchase[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Product {
@@ -24,9 +26,10 @@ model Product {
   title String
   slug  String @unique
 
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @default(now()) @updatedAt
   purchasedOn Purchase[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 enum PurchaseStatus {
