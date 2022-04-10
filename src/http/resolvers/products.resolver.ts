@@ -5,7 +5,7 @@ import { ProductService } from 'src/services/product.service';
 import { Product } from '../graphql/models/product';
 import { CreateProductInputs } from '../graphql/inputs/create-product-inputs';
 
-@Resolver()
+@Resolver(() => Product)
 export class ProductsResolver {
   constructor(private productService: ProductService) { }
 
@@ -20,4 +20,6 @@ export class ProductsResolver {
     @Args('data') data: CreateProductInputs) {
     return this.productService.createProduct(data);
   }
+
+  
 }
