@@ -5,7 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { DatabaseModule } from 'src/database/database.module';
 import { ProductsResolver } from './resolvers/products.resolver';
 import path from 'node:path';
-import { ApolloDriver } from '@nestjs/apollo';
+import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { ProductService } from 'src/services/product.service';
 import { PurchasesResolver } from './resolvers/purchases.resolver';
 import { PurchaseService } from 'src/services/purchase.service';
@@ -18,11 +18,18 @@ import { MessageModule } from 'src/message/message.module';
     DatabaseModule,
     MessageModule,
     ConfigModule.forRoot(),
-    GraphQLModule.forRoot({
-      driver: ApolloDriver,
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
       autoSchemaFile: path.resolve(process.cwd(), 'src/schema.gql'),
     }),
   ],
-  providers: [ProductsResolver, ProductService, PurchasesResolver, PurchaseService, CustomerService, CustomerResolver],
+  providers: [
+    ProductsResolver,
+    ProductService,
+    PurchasesResolver,
+    PurchaseService,
+    CustomerService,
+    CustomerResolver
+  ],
 })
 export class HttpModule { }
